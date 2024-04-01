@@ -1,6 +1,7 @@
 let gridSize = 3;
 let lights = [];
 let container = document.getElementById('container');
+
 let clickcounter = 0;
 
 
