@@ -1,8 +1,11 @@
-const gridSize = 5;
+let gridSize = 3;
 let lights = [];
 let container = document.getElementById('container');
+let clickcounter = 0;
+
 
 function initializeLights() {
+    lights = [];
     for (let i = 0; i < gridSize; i++) {
         lights[i] = [];
         for (let j = 0; j < gridSize; j++) {
@@ -30,6 +33,39 @@ function toggleLights(row, col) {
     if (col > 0) lights[row][col - 1] ^= 1;
     if (col < gridSize - 1) lights[row][col + 1] ^= 1;
     createGrid();
+    counter();
+    if (checkWin()) {
+        alert("Congratulations! You've won!");
+    }
+}
+
+function counter(){
+    clickcounter++;
+    let variableElement = document.getElementById('variableValue');
+    variableElement.innerHTML = clickcounter;
+}
+function checkWin() {
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            if (lights[i][j] === 1) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function changeGridSize() {
+    let selectElement = document.getElementById('gridSizeSelect');
+    let selectedSize = parseInt(selectElement.value);
+    initializeGridSize(selectedSize);
+    initializeLights();
+    createGrid();
+}
+
+function initializeGridSize(number) {
+    gridSize = number;
+    initializeLights();
 }
 
 initializeLights();
