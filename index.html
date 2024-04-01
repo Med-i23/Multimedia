@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="gameWindow">
 <div>
     <label for="gridSizeSelect">Select Grid Size:</label>
     <select id="gridSizeSelect">
-        <option value="3">3x3</option>
-        <option value="5" selected>5x5</option> <!-- Default to 5x5 -->
-        <option value="7">7x7</option>
+        <option value="3">Easy</option>
+        <option value="5" selected>Normal</option>
+        <option value="6">Hard</option>
     </select>
     <button onclick="changeGridSize()">Apply</button>
 </div>
 
 <div class="container" id="container"></div>
-<div class="container" id="container"></div>
 <script src="script.js"></script>
-<p id="variableValue"></p>
+
+<div>Current steps:
+<p id="counter"></p>
+</div>
+</div>
 </body>
 </html>

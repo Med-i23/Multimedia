@@ -1,4 +1,4 @@
-let gridSize = 3;
+let gridSize = 5;
 let lights = [];
 let container = document.getElementById('container');
 
@@ -17,6 +17,8 @@ function initializeLights() {
 
 function createGrid() {
     container.innerHTML = '';
+    container.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`; // Set grid columns based on gridSize
+    container.style.gridTemplateRows = `repeat(${gridSize}, 50px)`; // Set grid rows based on gridSize
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             let cell = document.createElement('div');
@@ -42,7 +44,7 @@ function toggleLights(row, col) {
 
 function counter(){
     clickcounter++;
-    let variableElement = document.getElementById('variableValue');
+    let variableElement = document.getElementById('counter');
     variableElement.innerHTML = clickcounter;
 }
 function checkWin() {
@@ -59,7 +61,8 @@ function checkWin() {
 function changeGridSize() {
     let selectElement = document.getElementById('gridSizeSelect');
     let selectedSize = parseInt(selectElement.value);
-    initializeGridSize(selectedSize);
+    gridSize = selectedSize;
+    initializeGridSize(gridSize);
     initializeLights();
     createGrid();
 }
