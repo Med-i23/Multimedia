@@ -27,6 +27,7 @@ function createGrid() {
             container.appendChild(cell);
         }
     }
+
 }
 
 function toggleLights(row, col) {
@@ -50,7 +51,7 @@ function counter(){
 function checkWin() {
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
-            if (lights[i][j] === 1) {
+            if (lights[i][j] === 0) {
                 return false;
             }
         }
