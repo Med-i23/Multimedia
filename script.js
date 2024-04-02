@@ -17,8 +17,8 @@ function initializeLights() {
 
 function createGrid() {
     container.innerHTML = '';
-    container.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`; // Set grid columns based on gridSize
-    container.style.gridTemplateRows = `repeat(${gridSize}, 50px)`; // Set grid rows based on gridSize
+    container.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`;
+    container.style.gridTemplateRows = `repeat(${gridSize}, 50px)`;
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             let cell = document.createElement('div');
@@ -27,7 +27,6 @@ function createGrid() {
             container.appendChild(cell);
         }
     }
-
 }
 
 function toggleLights(row, col) {

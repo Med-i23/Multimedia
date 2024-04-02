@@ -7,13 +7,13 @@ body{
 .container {
     display: grid;
     gap: 2px;
-    width: fit-content; /* Ensure the container only takes as much space as necessary */
+    width: fit-content;
 
 }
 
 .cell {
-    width: 50px; /* Adjust width as needed */
-    height: 50px; /* Adjust height as needed */
+    width: 50px;
+    height: 50px;
     background-color: yellow;
     border: 1px solid black;
     border-radius: 50%;
