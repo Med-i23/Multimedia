@@ -8,22 +8,25 @@
 </head>
 <body>
 <div class="gameWindow">
-<div>
-    <label for="gridSizeSelect">Select Grid Size:</label>
-    <select id="gridSizeSelect">
-        <option value="3">Easy</option>
-        <option value="5" selected>Normal</option>
-        <option value="6">Hard</option>
-    </select>
-    <button onclick="changeGridSize()">Apply</button>
+    <div>
+        <label for="gridSizeSelect">Select Grid Size:</label>
+        <select id="gridSizeSelect">
+            <option value="3">Easy</option>
+            <option value="5" selected>Normal</option>
+            <option value="6">Hard</option>
+        </select>
+        <button onclick="changeGridSize()">Apply</button>
+    </div>
+
+    <div class="container" id="container"></div>
+
+    <div>Current steps:
+        <p id="counter"></p>
+    </div>
+
+    <div>Time Elapsed: <span id="elapsedTime">0</span> seconds</div>
 </div>
 
-<div class="container" id="container"></div>
 <script src="script.js"></script>
-
-<div>Current steps:
-<p id="counter"></p>
-</div>
-</div>
 </body>
 </html>
