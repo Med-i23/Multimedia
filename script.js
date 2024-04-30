@@ -4,6 +4,27 @@ let container = document.getElementById('container');
 let clickcounter = 0;
 let startTime = null;
 let elapsedTimeElement = document.getElementById('elapsedTime');
+let clickSound = new Audio('sounds/click-sound.mp3');
+let backgroundMusic = new Audio('sounds/background-music.mp3');
+let winsound = new Audio('sounds/wow-sound.mp3');
+
+
+function playClickSound() {
+    clickSound.currentTime = 0;
+    clickSound.play();
+}
+
+function playWinSound() {
+    winsound.currentTime = 0;
+    winsound.volume = 0.1;
+    winsound.play();
+}
+
+function playBackgroundMusic() {
+    backgroundMusic.loop = true;
+    backgroundMusic.volume = 0.1;
+    backgroundMusic.play();
+}
 
 function initializeLights() {
     lights = [];
@@ -14,6 +35,7 @@ function initializeLights() {
         }
     }
 }
+
 
 function createGrid() {
     container.innerHTML = '';
@@ -34,6 +56,7 @@ function toggleLights(row, col) {
         startTime = new Date();
         setInterval(updateElapsedTime, 1000);
     }
+    playClickSound();
     lights[row][col] ^= 1;
     if (row > 0) lights[row - 1][col] ^= 1;
     if (row < gridSize - 1) lights[row + 1][col] ^= 1;
@@ -42,6 +65,8 @@ function toggleLights(row, col) {
     createGrid();
     counter();
     if (checkWin()) {
+        playWinSound();
+        backgroundMusic.pause();
         let endTime = new Date();
         updateElapsedTime();
         let timeDiff = endTime - startTime;
@@ -75,6 +100,7 @@ function changeGridSize() {
     initializeGridSize(gridSize);
     initializeLights();
     createGrid();
+    playBackgroundMusic();
 
 }
 
@@ -86,7 +112,7 @@ function initializeGridSize(number) {
 function updateElapsedTime() {
     let currentTime = new Date();
     let timeDiff = currentTime - startTime;
-    elapsedTimeElement.textContent = (timeDiff / 1000).toFixed(2); // Display elapsed time in seconds with two decimal places
+    elapsedTimeElement.textContent = (timeDiff / 1000).toFixed(2);
 }
 
 
@@ -102,3 +128,4 @@ function solver(){
 
 initializeLights();
 createGrid();
+playBackgroundMusic();
