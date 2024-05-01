@@ -1,4 +1,4 @@
-let gridSize = 5;
+let gridSize = 4;
 let lights = [];
 let container = document.getElementById('container');
 let clickcounter = 0;
@@ -7,10 +7,13 @@ let elapsedTimeElement = document.getElementById('elapsedTime');
 let clickSound = new Audio('sounds/click-sound.mp3');
 let backgroundMusic = new Audio('sounds/background-music.mp3');
 let winsound = new Audio('sounds/wow-sound.mp3');
-
+let isMuted = false;
+let muteButton = document.getElementById('muteButton');
+let intervalId = null;
 
 function playClickSound() {
     clickSound.currentTime = 0;
+    clickSound.volume = 0.1;
     clickSound.play();
 }
 
@@ -36,7 +39,6 @@ function initializeLights() {
     }
 }
 
-
 function createGrid() {
     container.innerHTML = '';
     container.style.gridTemplateColumns = `repeat(${gridSize}, 50px)`;
@@ -54,7 +56,7 @@ function createGrid() {
 function toggleLights(row, col) {
     if (clickcounter === 0) {
         startTime = new Date();
-        setInterval(updateElapsedTime, 1000);
+        intervalId = setInterval(updateElapsedTime, 1000);
     }
     playClickSound();
     lights[row][col] ^= 1;
@@ -67,12 +69,23 @@ function toggleLights(row, col) {
     if (checkWin()) {
         playWinSound();
         backgroundMusic.pause();
-        let endTime = new Date();
-        updateElapsedTime();
-        let timeDiff = endTime - startTime;
-        alert("Congratulations! You've won in " + (timeDiff / 1000).toFixed(2) + " seconds!");
+        playWinAlert();
     }
 }
+
+function playWinAlert(){
+    let endTime = new Date();
+    updateElapsedTime();
+    let timeDiff = endTime - startTime;
+    alert("Yay, you won! " + (timeDiff / 1000).toFixed(2) + " seconds!");
+}
+
+function updateElapsedTime() {
+    let currentTime = new Date();
+    let timeDiff = currentTime - startTime;
+    elapsedTimeElement.textContent = (timeDiff / 1000).toFixed(2);
+}
+
 
 function counter(){
     clickcounter++;
@@ -95,37 +108,26 @@ function changeGridSize() {
     let selectElement = document.getElementById('gridSizeSelect');
     let selectedSize = parseInt(selectElement.value);
     gridSize = selectedSize;
+    clearInterval(intervalId);
+    startTime = null;
     clickcounter = 0;
-    startTime = new Date();
-    initializeGridSize(gridSize);
+    elapsedTimeElement.textContent = "0.00";
+}
+
+function initializeGame() {
+    changeGridSize();
     initializeLights();
     createGrid();
     playBackgroundMusic();
-
 }
 
-function initializeGridSize(number) {
-    gridSize = number;
-    initializeLights();
+function toggleMute() {
+    isMuted = !isMuted;
+    if (isMuted) {
+        backgroundMusic.volume = 0;
+        muteButton.textContent = "Unmute";
+    } else {
+        backgroundMusic.volume = 0.1;
+        muteButton.textContent = "Mute";
+    }
 }
-
-function updateElapsedTime() {
-    let currentTime = new Date();
-    let timeDiff = currentTime - startTime;
-    elapsedTimeElement.textContent = (timeDiff / 1000).toFixed(2);
-}
-
-
-function solver(){
-    /*második sortól kezdesz
-    ha a második sor felett van fény akkor a második soriba kattolsz
-    ez végig az utolsó sorig
-    utána amilyen pattern maradt lookup olod
-    legfelső sortól a pattern bekattintod és újra az algoritmus*/
-}
-
-
-
-initializeLights();
-createGrid();
-playBackgroundMusic();
