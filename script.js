@@ -10,6 +10,7 @@ let winsound = new Audio('sounds/wow-sound.mp3');
 let isMuted = false;
 let muteButton = document.getElementById('muteButton');
 let intervalId = null;
+let picture = document.getElementById('sound-icons');
 
 function playClickSound() {
     clickSound.currentTime = 0;
@@ -69,15 +70,11 @@ function toggleLights(row, col) {
     if (checkWin()) {
         playWinSound();
         backgroundMusic.pause();
-        playWinAlert();
+        let endTime = new Date();
+        updateElapsedTime();
+        let timeDiff = endTime - startTime;
+        showWinPopup(timeDiff / 1000);
     }
-}
-
-function playWinAlert(){
-    let endTime = new Date();
-    updateElapsedTime();
-    let timeDiff = endTime - startTime;
-    alert("Yay, you won! " + (timeDiff / 1000).toFixed(2) + " seconds!");
 }
 
 function updateElapsedTime() {
@@ -104,6 +101,18 @@ function checkWin() {
     return true;
 }
 
+function showWinPopup(time) {
+    let winPopup = document.getElementById('winPopup');
+    let winMessage = document.getElementById('winMessage');
+    winMessage.textContent = "Yay, you won in " + time.toFixed(2) + " seconds and " + clickcounter + " steps!";
+    winPopup.style.display = "block";
+}
+
+function closePopup() {
+    let winPopup = document.getElementById('winPopup');
+    winPopup.style.display = "none";
+}
+
 function changeGridSize() {
     let selectElement = document.getElementById('gridSizeSelect');
     let selectedSize = parseInt(selectElement.value);
@@ -125,9 +134,9 @@ function toggleMute() {
     isMuted = !isMuted;
     if (isMuted) {
         backgroundMusic.volume = 0;
-        muteButton.textContent = "Unmute";
+        picture.src = "assets/soundoff.png"
     } else {
         backgroundMusic.volume = 0.1;
-        muteButton.textContent = "Mute";
+        picture.src = "assets/sound.png";
     }
 }

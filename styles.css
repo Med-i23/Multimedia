@@ -1,7 +1,7 @@
 body {
-    font-family: 'Verdana', sans-serif; /* Applying Roboto font to the whole document */
+    font-family: 'Verdana', sans-serif;
     color: white;
-    background: #1e1f22; /* Dark background */
+    background: #1e1f22;
     width: 100vw;
     height: 100vh;
     margin: 0;
@@ -28,6 +28,30 @@ body {
     width: 300px;
 }
 
+#gridSizeSelect {
+    background-color: #333;
+    color: white;
+    border: 2px solid #222;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+#startButton {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#startButton:hover {
+    background-color: #666;
+    color: white;
+}
+
 .cell {
     width: 50px;
     height: 50px;
@@ -39,10 +63,56 @@ body {
 }
 
 .cell.active {
-    background-color: #666; /* Yellow for active cells */
+    background-color: #666;
 }
 
-/* Hover effect */
+
 .cell:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
+    transform: scale(1.1);
+}
+
+
+#muteButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+#sound-icons {
+    width: 40px;
+    height: auto;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: #333;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
