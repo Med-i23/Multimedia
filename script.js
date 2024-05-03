@@ -106,6 +106,7 @@ function showWinPopup(time) {
     let winMessage = document.getElementById('winMessage');
     winMessage.textContent = "Yay, you won in " + time.toFixed(2) + " seconds and " + clickcounter + " steps!";
     winPopup.style.display = "block";
+    winPopup.classList.add('show');
 }
 
 function closePopup() {
