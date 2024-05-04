@@ -138,7 +138,6 @@ function counter(){
     counter.innerHTML = clickcounter;
 }
 
-
 // Checks if all the matrix numbers (lights) are 0
 function checkWin() {
     for (let i = 0; i < gridSize; i++) {
@@ -165,18 +164,18 @@ function showWinPopup(time) {
 
 }
 
-// Define a function to save scoreboard to local storage
+// Save scoreboard to local storage
 function saveScoreboard() {
     localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
 }
 
-// Function to retrieve scoreboard from local storage
+// Retrieve scoreboard from local storage
 function loadScoreboard() {
     scoreboard = JSON.parse(localStorage.getItem('scoreboard')) || [];
     displayScoreboard();
 }
 
-// Function to update the scoreboard when a player wins a game
+// Update the scoreboard when a player wins a game
 function updateScoreboard(time, steps) {
     let playerName = prompt("Congratulations! Enter your name for the scoreboard:");
     let record = { "name": playerName, "time": time, "steps": steps };
