@@ -94,7 +94,6 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-
 }
 
 .popup.show {
@@ -109,6 +108,7 @@ body {
     border: 1px solid #888;
     width: 80%;
     max-width: 400px;
+    border-radius: 20px;
 }
 
 #danceGif{
@@ -116,6 +116,16 @@ body {
     display: block;
     margin: 0 auto;
 }
+
+#scoreboard{
+    background-color: #666;
+    border: 4px solid #888;
+    width: 300px;
+    display: block;
+    margin: 15% auto;
+    padding: 10px;
+}
+
 
 .close {
     color: #aaa;
