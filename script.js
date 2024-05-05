@@ -17,14 +17,14 @@ window.addEventListener('load', loadScoreboard);
 
 ////////////////////////////music////////////////////////////////
 
-// Triggers uppon clicking a cell
+// Triggers upon clicking a cell
 function playClickSound() {
     clickSound.currentTime = 0;
     clickSound.volume = 0.1;
     clickSound.play();
 }
 
-// Triggers uppon winning the game
+// Triggers upon winning the game
 function playWinSound() {
     winsound.currentTime = 0;
     winsound.volume = 0.1;
@@ -133,7 +133,7 @@ function updateElapsedTime() {
 }
 
 // Adds to the counter
-function counter(){
+function counter() {
     clickcounter++;
     let counter = document.getElementById('counter');
     counter.innerHTML = clickcounter;
@@ -154,7 +154,7 @@ function checkWin() {
 
 ////////////////////////////End////////////////////////////////
 
-// Function that shows a popup when the game ends and sets up the scoreboard
+// Shows a popup when the game ends and sets up the scoreboard
 function showWinPopup(time) {
     updateScoreboard(time, clickcounter);
     let winPopup = document.getElementById('winPopup');
@@ -178,7 +178,7 @@ function loadScoreboard() {
 // Update the scoreboard when a player wins a game
 function updateScoreboard(time, steps) {
     let playerName = prompt("Congratulations! Enter your name for the scoreboard:");
-    let record = { "name": playerName, "time": time, "steps": steps };
+    let record = {"name": playerName, "time": time, "steps": steps};
     scoreboard.push(record);
     scoreboard.sort((a, b) => a.time - b.time);
     if (scoreboard.length > 10) {
@@ -188,7 +188,7 @@ function updateScoreboard(time, steps) {
     saveScoreboard();
 }
 
-// Function that lists out the scoreboard
+// Lists out the scoreboard
 function displayScoreboard() {
     let scoreboardContainer = document.getElementById('scoreboard');
     scoreboardContainer.innerHTML = '<h2>Scoreboard</h2>';
