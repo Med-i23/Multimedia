@@ -30,6 +30,7 @@ function playWinSound() {
     winsound.volume = 0.1;
     winsound.play();
 }
+
 // Triggers when we choose first choose a difficulty
 function playBackgroundMusic() {
     backgroundMusic.loop = true;
@@ -161,7 +162,6 @@ function showWinPopup(time) {
     winMessage.textContent = "Yay, you won in " + time.toFixed(2) + " seconds and " + clickcounter + " steps!";
     winPopup.style.display = "block";
     winPopup.classList.add('show');
-
 }
 
 // Save scoreboard to local storage
